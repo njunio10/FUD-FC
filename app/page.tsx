@@ -1,19 +1,26 @@
-import Link from "next/link"
-import Image from "next/image"
-import { ChevronRight, Users, Instagram, Twitter } from "lucide-react"
-import MatchCard from "@/components/match-card"
-import MiniCalendar from "@/components/mini-calendar"
-import { players } from "./elenco/page"
+"use client";
+import Link from "next/link";
+import React, { useState } from "react";
+import Image from "next/image";
+import { ChevronRight, Users, Instagram, Twitter } from "lucide-react";
+import MatchCard from "@/components/match-card";
+import MiniCalendar from "@/components/mini-calendar";
+import { players } from "./elenco/page";
 
 export default function Home() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header/Navigation */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 header-container">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
             <div className="flex items-center">
-              <button className="mr-4 text-gray-700 md:hidden">
+              <button
+                className="mr-4 text-gray-700 md:hidden mobile-menu-button"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -44,7 +51,7 @@ export default function Home() {
               </div>
             </div>
 
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className={`nav ${isMobileMenuOpen ? "hidden" : "hidden md:flex items-center space-x-8"}`}>
               <Link href="/jogos" className="text-gray-700 hover:text-[#0225C1] font-medium transition-colors">
                 Jogos
               </Link>
@@ -57,7 +64,7 @@ export default function Home() {
             </nav>
 
             <div className="flex items-center gap-4">
-              <div className="hidden md:flex items-center gap-4">
+              <div className={`sponsors ${isMobileMenuOpen ? "hidden" : "hidden md:flex items-center gap-4"}`}>
                 <span className="text-sm font-medium text-gray-600">Patrocinadores:</span>
                 <Link href="#" className="w-16 h-16">
                   <Image
@@ -100,6 +107,19 @@ export default function Home() {
             </div>
           </div>
         </div>
+        {isMobileMenuOpen && (
+          <nav className="mobile-nav">
+            <Link href="/jogos" className="block text-gray-700 hover:text-[#0225C1] font-medium transition-colors">
+              Jogos
+            </Link>
+            <Link href="/historia" className="block text-gray-700 hover:text-[#0225C1] font-medium transition-colors">
+              História
+            </Link>
+            <Link href="/estatisticas" className="block text-gray-700 hover:text-[#0225C1] font-medium transition-colors">
+              Estatísticas
+            </Link>
+          </nav>
+        )}
       </header>
 
       {/* Hero Section */}
