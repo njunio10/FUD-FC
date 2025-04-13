@@ -3,8 +3,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'FUD FC',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  description: 'Site Oficial do FUD FC',
+  generator: 'fudfc',
 }
 
 export default function RootLayout({
