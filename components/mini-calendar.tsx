@@ -125,7 +125,7 @@ export default function MiniCalendar() {
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-[#0225C1]"></div>
-          <span className="text-xs text-gray-600">Eventos</span>
+          <span className="text-xs text-gray-600">Peladas</span>
         </div>
       </div>
     </div>

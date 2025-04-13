@@ -29,24 +29,24 @@ export default function MatchCard() {
             </div>
             <div className="flex items-center justify-center gap-1">
               <Clock className="h-4 w-4 text-[#DC2C1F]" />
-              <span>16:00</span>
+              <span>21:00</span>
             </div>
             <div className="flex items-center justify-center gap-1">
               <MapPin className="h-4 w-4 text-[#DC2C1F]" />
-              <span>Campo Esmeralda</span>
+              <span> Esmeralda</span>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col items-center text-center">
           <Image
-            src="images/farma.png"
+            src="images/image.png"
             alt="Adversário FC"
             width={80}
             height={80}
             className="mb-2"
           />
-          <h3 className="text-xl font-bold">FARMA CITY</h3>
+          <h3 className="text-xl font-bold">ADVERSÁRIO FC</h3>
           <p className="text-sm text-gray-500">Visitante</p>
         </div>
       </div>

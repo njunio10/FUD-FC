@@ -1,10 +1,12 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, Calendar, MapPin, Clock, Trophy, Award } from "lucide-react"
+import { ArrowLeft, Calendar, MapPin, Clock, Trophy } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { BiFootball } from "react-icons/bi";
+import { GiRunningShoe } from "react-icons/gi";
 
-// Dados de exemplo - substitua por dados reais do seu time
+// Dados de exemplo
 const upcomingMatches = [
   {
     id: 1,
@@ -20,45 +22,9 @@ const upcomingMatches = [
       isHome: false,
     },
     date: "15/04/2024",
-    time: "16:00",
-    stadium: "Estádio Municipal",
+    time: "21:00",
+    stadium: "Esmeralda",
     ticketsAvailable: true,
-  },
-  {
-    id: 2,
-    competition: "Amistoso",
-    homeTeam: {
-      name: "FUD FC",
-      logo: "images/fud-fc-logo.png",
-      isHome: true,
-    },
-    awayTeam: {
-      name: "Adversário FC",
-      logo: "/placeholder.svg?height=80&width=80",
-      isHome: false,
-    },
-    date: "22/04/2024",
-    time: "19:30",
-    stadium: "Arena Central",
-    ticketsAvailable: true,
-  },
-  {
-    id: 3,
-    competition: "Amistoso",
-    homeTeam: {
-      name: "FUD FC",
-      logo: "images/fud-fc-logo.png",
-      isHome: true,
-    },
-    awayTeam: {
-      name: "Adversário FC",
-      logo: "/placeholder.svg?height=80&width=80",
-      isHome: false,
-    },
-    date: "30/04/2024",
-    time: "20:00",
-    stadium: "Estádio Municipal",
-    ticketsAvailable: false,
   },
 ]
 
@@ -70,18 +36,32 @@ const pastMatches = [
       name: "FUD FC",
       logo: "images/fud-fc-logo.png",
       isHome: true,
-      score: 2,
+      score: 5,
     },
     awayTeam: {
-      name: "Time Visitante",
+      name: "União FC",
       logo: "/placeholder.svg?height=80&width=80",
       isHome: false,
-      score: 0,
+      score: 3,
     },
-    date: "01/04/2024",
-    time: "16:00",
-    stadium: "Estádio Municipal",
+    date: "10/04/2024",
+    time: "21:00",
+    stadium: "Esmeralda",
     result: "Vitória",
+    goals: [
+      { player: "Natan Junio", team: "FUD FC", goalCount: 3 },
+      { player: "Giancarllo", team: "FUD FC", goalCount: 2 },
+    ],
+    assists: [
+      { player: "Cisley", team: "FUD FC", assistCount: 3 },
+      { player: "Dyonathan", team: "FUD FC", assistCount: 1 },
+      { player: "Osmar Jr", team: "FUD FC", assistCount: 1 },
+    ],
+    cards: [
+      { player: "Filipe", type: "yellow", team: "FUD FC" },
+      { player: "Giancarllo", type: "yellow", team: "FUD FC" },
+      { player: "Wisley", type: "yellow", team: "FUD FC" },
+    ],
   },
   {
     id: 5,
@@ -90,38 +70,32 @@ const pastMatches = [
       name: "FUD FC",
       logo: "images/fud-fc-logo.png",
       isHome: true,
-      score: 1,
+      score: 5,
     },
     awayTeam: {
-      name: "Outro Adversário",
+      name: "Galacticos",
       logo: "/placeholder.svg?height=80&width=80",
       isHome: false,
-      score: 1,
+      score: 7,
     },
     date: "25/03/2024",
     time: "19:30",
-    stadium: "Arena Rival",
-    result: "Empate",
-  },
-  {
-    id: 6,
-    competition: "Amistoso",
-    homeTeam: {
-      name: "FUD FC",
-      logo: "images/fud-fc-logo.png",
-      isHome: true,
-      score: 3,
-    },
-    awayTeam: {
-      name: "FC CAMPEÃO",
-      logo: "/placeholder.svg?height=80&width=80",
-      isHome: false,
-      score: 1,
-    },
-    date: "18/03/2024",
-    time: "20:00",
-    stadium: "Estádio Oponente",
-    result: "Vitória",
+    stadium: "Esmeralda",
+    result: "Derrota",
+    goals: [
+      { player: "Giancarllo", team: "FUD FC", goalCount: 2 },
+      { player: "Natan Junio", team: "FUD FC", goalCount: 1 },
+      { player: "Dyonathan", team: "FUD FC", goalCount: 1 },
+      { player: "Elias", team: "FUD FC", goalCount: 1 },
+    ],
+    assists: [
+      { player: "Mikael", team: "FUD FC", assistCount: 1 },
+      { player: "Wisley", team: "FUD FC", assistCount: 1 },
+      { player: "Don", team: "FUD FC", assistCount: 1 },
+    ],
+    cards: [
+      { player: "Greco ", type: "yellow", team: "FUD FC" },
+    ],
   },
 ]
 
@@ -140,16 +114,15 @@ export default function Games() {
               <h1 className="text-2xl md:text-3xl font-bold">Jogos</h1>
             </div>
             <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full overflow-hidden border border-white">
-              <Image
-                src="/images/fud-fc-logo.png"
-                alt="Logo do Time"
-                width={40}
-                height={40}
-                className="object-cover w-full h-full"
-              />
-            </div>
-
+              <div className="w-10 h-10 rounded-full overflow-hidden border border-white">
+                <Image
+                  src="/images/fud-fc-logo.png"
+                  alt="Logo do Time"
+                  width={40}
+                  height={40}
+                  className="object-cover w-full h-full"
+                />
+              </div>
               <span className="text-xl font-bold hidden md:inline-block">FUD FC</span>
             </div>
           </div>
@@ -192,20 +165,6 @@ export default function Games() {
                         <div className="mb-2 rounded-lg bg-gray-100 px-6 py-3 text-3xl font-bold">
                           <span className="text-[#0225C1]">VS</span>
                         </div>
-                        <div className="space-y-1 text-sm">
-                          <div className="flex items-center justify-center gap-1">
-                            <Calendar className="h-4 w-4 text-[#DC2C1F]" />
-                            <span>{match.date}</span>
-                          </div>
-                          <div className="flex items-center justify-center gap-1">
-                            <Clock className="h-4 w-4 text-[#DC2C1F]" />
-                            <span>{match.time}</span>
-                          </div>
-                          <div className="flex items-center justify-center gap-1">
-                            <MapPin className="h-4 w-4 text-[#DC2C1F]" />
-                            <span>{match.stadium}</span>
-                          </div>
-                        </div>
                       </div>
 
                       <div className="flex flex-col items-center text-center">
@@ -221,11 +180,18 @@ export default function Games() {
                       </div>
                     </div>
 
-                    <div className="mt-6 flex justify-center border-t border-gray-100 pt-4">
-                      <div className="text-center py-3">
-                        <div className="text-sm font-medium text-gray-700">
-                          {match.ticketsAvailable ? "Ingressos disponíveis" : "Ingressos em breve"}
-                        </div>
+                    <div className="mt-4 text-center text-sm space-y-1">
+                      <div className="flex items-center justify-center gap-1">
+                        <Calendar className="h-4 w-4 text-[#DC2C1F]" />
+                        <span>{match.date}</span>
+                      </div>
+                      <div className="flex items-center justify-center gap-1">
+                        <Clock className="h-4 w-4 text-[#DC2C1F]" />
+                        <span>{match.time}</span>
+                      </div>
+                      <div className="flex items-center justify-center gap-1">
+                        <MapPin className="h-4 w-4 text-[#DC2C1F]" />
+                        <span>{match.stadium}</span>
                       </div>
                     </div>
                   </div>
@@ -267,16 +233,6 @@ export default function Games() {
 
                       <div className="flex flex-col items-center justify-center text-center">
                         <div className="mb-2 text-lg font-bold text-gray-400">FINAL</div>
-                        <div className="space-y-1 text-sm">
-                          <div className="flex items-center justify-center gap-1">
-                            <Calendar className="h-4 w-4 text-[#DC2C1F]" />
-                            <span>{match.date}</span>
-                          </div>
-                          <div className="flex items-center justify-center gap-1">
-                            <MapPin className="h-4 w-4 text-[#DC2C1F]" />
-                            <span>{match.stadium}</span>
-                          </div>
-                        </div>
                       </div>
 
                       <div className="flex flex-col items-center text-center">
@@ -292,20 +248,31 @@ export default function Games() {
                       </div>
                     </div>
 
-                    <div className="mt-6 flex justify-center border-t border-gray-100 pt-4">
+                    <div className="mt-4 text-center text-sm space-y-1">
+                      <div className="flex items-center justify-center gap-1">
+                        <Calendar className="h-4 w-4 text-[#DC2C1F]" />
+                        <span>{match.date}</span>
+                      </div>
+                      <div className="flex items-center justify-center gap-1">
+                        <MapPin className="h-4 w-4 text-[#DC2C1F]" />
+                        <span>{match.stadium}</span>
+                      </div>
+                    </div>
+
+                    <div className="mt-6 border-t border-gray-100 pt-4">
                       <div className="grid grid-cols-3 gap-4 w-full">
                         <div className="text-center">
                           <div className="text-sm text-gray-500">Gols</div>
                           <div className="flex justify-center items-center gap-1 mt-1">
-                            <Trophy className="h-4 w-4 text-[#DC2C1F]" />
-                            <span className="font-medium">{match.homeTeam.score + match.awayTeam.score}</span>
+                            <BiFootball className="h-4 w-4 text-[#DC2C1F]" />
+                            <span className="font-medium">{match.goals.reduce((sum, goal) => sum + (goal.goalCount || 0), 0)}</span>
                           </div>
                         </div>
                         <div className="text-center">
                           <div className="text-sm text-gray-500">Assistências</div>
                           <div className="flex justify-center items-center gap-1 mt-1">
-                            <Award className="h-4 w-4 text-[#0225C1]" />
-                            <span className="font-medium">{Math.floor(Math.random() * 6) + 1}</span>
+                            <GiRunningShoe className="h-4 w-4 text-[#0225C1]" />
+                            <span className="font-medium">{match.assists.reduce((sum, assist) => sum + (assist.assistCount || 0), 0)}</span>
                           </div>
                         </div>
                         <div className="text-center">
@@ -313,11 +280,77 @@ export default function Games() {
                           <div className="flex justify-center items-center gap-1 mt-1">
                             <div className="flex">
                               <div className="w-3 h-4 bg-yellow-500 rounded mr-1"></div>
-                              <span className="font-medium mr-2">{Math.floor(Math.random() * 5) + 1}</span>
+                              <span className="font-medium mr-2">
+                                {match.cards.filter((card) => card.type === "yellow").length}
+                              </span>
                               <div className="w-3 h-4 bg-[#DC2C1F] rounded mr-1"></div>
-                              <span className="font-medium">{Math.floor(Math.random() * 2)}</span>
+                              <span className="font-medium">
+                                {match.cards.filter((card) => card.type === "red").length}
+                              </span>
                             </div>
                           </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-4 grid grid-cols-3 gap-4">
+                        <div className="text-center">
+                          <h4 className="text-sm font-medium text-gray-700 mb-2">Jogadores</h4>
+                          {match.goals.length > 0 ? (
+                            <ul className="space-y-1">
+                              {match.goals.map((goal, index) => (
+                                <li key={index} className="text-sm text-gray-600 flex justify-center items-center gap-2">
+                                  <span>{goal.player} ({goal.team})</span>
+                                  <div className="flex">
+                                    {Array.from({ length: goal.goalCount || 0 }).map((_, i) => (
+                                      <BiFootball key={i} className="h-4 w-4 text-[#DC2C1F]" />
+                                    ))}
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p className="text-sm text-gray-500">Nenhum gol registrado</p>
+                          )}
+                        </div>
+
+                        <div className="text-center">
+                          <h4 className="text-sm font-medium text-gray-700 mb-2">Jogadores</h4>
+                          {match.assists.length > 0 ? (
+                            <ul className="space-y-1">
+                              {match.assists.map((assist, index) => (
+                                <li key={index} className="text-sm text-gray-600 flex justify-center items-center gap-2">
+                                  <span>{assist.player} ({assist.team})</span>
+                                  <div className="flex">
+                                    {Array.from({ length: assist.assistCount || 0 }).map((_, i) => (
+                                      <GiRunningShoe key={i} className="h-4 w-4 text-[#0225C1]" />
+                                    ))}
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p className="text-sm text-gray-500">Nenhuma assistência registrada</p>
+                          )}
+                        </div>
+
+                        <div className="text-center">
+                          <h4 className="text-sm font-medium text-gray-700 mb-2">Jogadores</h4>
+                          {match.cards.length > 0 ? (
+                            <ul className="space-y-1">
+                              {match.cards.map((card, index) => (
+                                <li key={index} className="text-sm text-gray-600 flex justify-center items-center gap-2">
+                                  <span
+                                    className={`w-3 h-3 rounded ${
+                                      card.type === "yellow" ? "bg-yellow-500" : "bg-[#DC2C1F]"
+                                    }`}
+                                  ></span>
+                                  {card.player} ({card.team})
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p className="text-sm text-gray-500">Nenhum cartão registrado</p>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -331,4 +364,3 @@ export default function Games() {
     </div>
   )
 }
-

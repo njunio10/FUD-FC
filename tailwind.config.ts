@@ -20,17 +20,22 @@ const config = {
     },
     extend: {
       colors: {
+        team: {
+          red: "#DC2C1F",
+          blue: "#0225C1",
+          white: "#FFFFFF",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#0225C1",
+          DEFAULT: "#DC2C1F",
           foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "#DC2C1F",
+          DEFAULT: "#0225C1",
           foreground: "#FFFFFF",
         },
         destructive: {
@@ -79,4 +84,3 @@ const config = {
 } satisfies Config
 
 export default config
-
