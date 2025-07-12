@@ -78,7 +78,7 @@ export default function Statistics() {
                 <ArrowLeft className="h-5 w-5" />
                 <span>Voltar</span>
               </Link>
-              <h1 className="text-2xl md:text-3xl font-bold">Estatísticas do Time</h1>
+              <h1 className="text-2xl md:text-3xl font-bold">Estatísticas</h1>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-full overflow-hidden border border-white">
